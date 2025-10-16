@@ -1,0 +1,366 @@
+%\usepackage[a4paper,margin=15mm]{geometry}
+%\usepackage{reledmac}
+\usepackage{libertine}
+\usepackage{makeidx}
+
+\makeindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage{lipsum}
+\usepackage{fixltx2e}
+\usepackage{xspace}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{lettrine}
+\usepackage{flushend}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage[object=vectorian]{pgfornament}
+\usepackage{fontspec}
+\usepackage{ifpdf}
+\usepackage{eso-pic}
+\usepackage[british]{babel}
+\usepackage{titlesec}
+\usepackage{blindtext}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{xifthen}
+\usepackage{csquotes}
+\usepackage{ragged2e}
+\usepackage{titletoc}
+\usepackage{soul}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{scrextend}
+\usepackage[para]{footmisc}
+\usepackage{fixfoot}
+\usepackage{chngcntr}
+\usepackage{setspace}
+\usepackage{contour}
+\usepackage{etex}
+\usepackage{hyphenat}
+
+\quarkmarks
+
+\setstocksize{9in}{6in}% 6in x 9in
+\settrimmedsize{9in}{6in}{*}
+\settrims{0in}{0in}
+
+\setmainfont{\frankrhuel}[
+  % Files
+  Path            = .cmp/fnt/frankrhuel/ ,
+  % Fonts
+  UprightFont     = FrankRuehlCLM-Medium.ttf ,
+  UprightFeatures = { SmallCapsFont = FrankRuehlCLM-Medium.ttf, } ,
+  BoldFont        = FrankRuehlCLM-Bold.ttf,
+  BoldFeatures    = { SmallCapsFont = FrankRuehlCLM-Bold.ttf } ,
+  ItalicFont      = FrankRuehlCLM-MediumOblique.ttf ,
+  BoldItalicFont  = FrankRuehlCLM-BoldOblique.ttf ,
+  % Features
+  Numbers         = OldStyle,
+  WordSpace       = 0.65
+ ]
+
+
+% old-style numbers don't look great as drop-caps
+\newfontfamily{\lettrinefont}{Bodoni12_ITC}[
+  % Files
+  Path            = .cmp/fnt/numbers/ ,
+  % Fonts
+  UprightFont     = *-Regular.ttf ,
+  UprightFeatures = { SmallCapsFont = *-Regular.ttf } ,
+  BoldFont        = *-Regular.ttf ,
+  BoldFeatures    = { SmallCapsFont = *-Regular.ttf } ,
+  ItalicFont      = *-Regular.ttf ,
+  BoldItalicFont  = *-Regular.ttf,
+  % Features
+  Numbers         = NewStyle,
+  WordSpace       = 0.6]
+
+
+\newfontfamily{\spoken}{Sans}[
+  % Files
+  Path            = .cmp/fnt/sans/ ,
+  % Fonts
+  UprightFont     = *-Regular.ttf ,
+  UprightFeatures = { SmallCapsFont = *-Regular.ttf } ,
+  BoldFont        = *-Bold.ttf ,
+  BoldFeatures    = { SmallCapsFont = *-Bold.ttf } ,
+  ItalicFont      = *-Italic.ttf ,
+  BoldItalicFont  = *-Italic.ttf ,
+  % Features
+  Numbers         = OldStyle,
+  WordSpace       = 0.65,
+  LetterSpace     = -2]
+
+\newfontfamily{\versetext}{FrankRuehlCLM}[
+  % Files
+  Path            = .cmp/fnt/frankrhuel/ ,
+  % Fonts
+  UprightFont     = *-Medium.ttf ,
+  UprightFeatures = { SmallCapsFont = *-Medium.ttf, } ,
+  BoldFont        = FrankRuehlCLM-Bold.ttf,
+  BoldFeatures    = { SmallCapsFont = *-Bold.ttf } ,
+  ItalicFont      = *-MediumOblique.ttf ,
+  BoldItalicFont  = *-BoldOblique.ttf ,
+  % Features
+  Numbers         = OldStyle,
+  WordSpace       = 0.6,
+  LetterSpace     = -2
+ ]
+
+
+% old-style numbers don't look great as drop-caps
+\newfontfamily{\headings}{AlegreyaSC}[
+  % Files
+  Path            = .cmp/fnt/alegreya-sc/ ,
+  % Fonts
+  UprightFont     = *-Regular.ttf ,
+  UprightFeatures = { SmallCapsFont = *-Regular.ttf } ,
+  BoldFont        = *-Bold.ttf ,
+  BoldFeatures    = { SmallCapsFont = *-Bold.ttf } ,
+  ItalicFont      = *-Italic.ttf ,
+  BoldItalicFont  = *-BoldItalic.ttf]
+
+\setlength{\parskip}{\baselineskip}%
+
+% book names font family and huge
+\titleformat{\chapter}[display]{\Huge\bfseries\headings\centering}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{0pt}{30pt}
+\titleformat{\section}[display]{\Huge\headings\centering}{\sectiontitlename\ \thesection}{20pt}{\Huge}
+\titlespacing*{\section}{0pt}{0pt}{0pt}
+\titleformat{\subsection}[display]{\Large\headings}{\subsectiontitlename\ \thesubsection}{20pt}{\Large}
+\titlespacing*{\subsection}{0pt}{0pt}{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+
+
+% the page number in the bottom centre of each page
+\cfoot{\thepage}
+
+% set the footnote font style
+\renewcommand{\footnotelayout}{\vfill\frankrhuel}
+\renewcommand{\footnoterule}{\vfill\kern -3pt \hrule width 0.4\columnwidth \kern 2.6pt}
+\newcommand*{\multfootsep}{\textsuperscript{\normalfont,}}
+
+
+% cause the footnotes to be listed inline rather than on new lines
+\footglue=.25em plus.15em minus.15em
+
+\renewcommand{\headrule}{\hbox to\headwidth{%
+    \color{white}\leaders\hrule height 0 \hfill}}
+
+
+\hypersetup{colorlinks=true, linkcolor=black, urlcolor=blue, urlbordercolor={0 1 1}}
+
+\newcommand{\framesize}{\textwidth}
+\setlength{\headwidth}{\textwidth}
+\setlength{\columnseprule}{0pt}
+
+% space below the page header
+\setheaderspaces{*}{0mm}{*}
+\clubpenalty10000
+\widowpenalty10000
+
+
+%\newlength{\versespacing}
+%\setlength{\versespacing}{0pt}
+%\newcommand{\versespace}{\hspace{\versespacing}}
+\frenchspacing
+
+\AtBeginDocument{%
+  \begingroup\tiny%
+  \global\footnotesep=0.7\baselineskip%
+  \global\footnotebaselineskip\baselineskip%
+  \endgroup
+}
+
+\newcommand\AtPageUpperRight[1]{\AtPageUpperLeft{%
+ \put(\LenToUnit{\paperwidth},\LenToUnit{0\paperheight}){#1}%
+ }}%
+\newcommand\AtPageLowerRight[1]{\AtPageLowerLeft{%
+ \put(\LenToUnit{\paperwidth},\LenToUnit{0\paperheight}){#1}%
+ }}%
+
+\sodef\vh{}{-0.3pt}{2.5pt plus0pt minus 1pt}{1pt plus0.15pt minus0.1pt}
+\sodef\vt{}{-.03em}{0.2em plus0.35em minus 0.09em}{1em plus.1em minus.1em}
+\sodef\fnm{}{.1em}{0.1em plus0.1em minus 0.09em}{0.1em plus.1em minus.09em}
+\sodef\fnt{}{-0.04em}{0pt}{0pt}
+\sodef\soulVerseNum{}{.1em}{0.1em plus0.1em minus 0.09em}{0.1em plus.1em minus.09em}
+
+\newcommand{\sectionstyle}{\bfseries\raggedright\fontsize{10pt}{9.75pt}\selectfont\headings}
+\setsecheadstyle{\sectionstyle}
+\setbeforesecskip{0pt}
+\setaftersecskip{0pt}
+
+\newcommand{\subsectionstyle}{\bfseries\itshape\raggedright\fontsize{10pt}{9.75pt}\selectfont\headings}
+\setsubsecheadstyle{\subsectionstyle}
+\setbeforesubsecskip{0pt}
+\setaftersubsecskip{0pt}
+
+\makeatletter
+\patchcmd{\@footnotetext}{\footnotesize}{\tiny}{}{}
+
+\iffalse
+% color printing
+\definecolor{JesusRed}{rgb}{0.68, 0.08, 0.08}
+\definecolor{HighlightGray}{rgb}{0.94, 0.94, 0.94}
+\definecolor{VerseUlColor}{rgb}{1, 1, 1}
+\definecolor{VerseNumColor}{rgb}{0.75, 0.75, 0.75}
+\definecolor{fnTextColor}{rgb}{0.53, 0.53, 0.53}
+\definecolor{fnBorderColor}{rgb}{0.95, 0.95, 0.95}
+\definecolor{fnBgColor}{rgb}{.98, .98, .98}
+\definecolor{ChapterRed}{rgb}{1, 0, 0}
+\fi
+
+% b&w printing
+\definecolor{JesusRed}{rgb}{0.28, 0.28, 0.28}
+\definecolor{HighlightGray}{rgb}{0.94, 0.94, 0.94}
+\definecolor{VerseUlColor}{rgb}{1, 1, 1}
+\definecolor{VerseNumColor}{rgb}{0.75, 0.75, 0.75}
+\definecolor{fnTextColor}{rgb}{0.53, 0.53, 0.53}
+\definecolor{fnBorderColor}{rgb}{0.95, 0.95, 0.95}
+\definecolor{fnBgColor}{rgb}{.98, .98, .98}
+\definecolor{ChapterRed}{rgb}{.333, .333, .333}
+
+
+%\definecolor{VerseNumColor}{rgb}{0.41, 0.41, 0.41}
+%\definecolor{VerseUlColor}{rgb}{0.85, 0.85, 0.85}
+\newcommand\versecolor{black}
+\newcommand\chapnumcolor{ChapterRed}
+\newlength{\biblechapskip}
+  \setlength{\biblechapskip}{-10pt plus .33em minus .2em}
+\newcounter{biblechapter}
+\newcounter{bibleverse}[biblechapter]
+\renewcommand\chaptername{Book}
+\newcommand{\customsection}[2][]{%
+  \ifthenelse{\isempty{#1}}%
+    % use the section title name for the TOC contents line
+    {\section*{#2}\addcontentsline{toc}{part}{\headings{#2}}}
+    % permit an override value to be used in TOC
+    {\section*{#2}\addcontentsline{toc}{part}{\headings{#1}}}
+}
+\newcommand{\biblebook}[2][]{%
+  \setcounter{biblechapter}{0}
+  \ifthenelse{\isempty{#1}}%
+    % use the section title name for the TOC contents line
+    {\gdef\currbook{#2}\chapter*{#2}\addcontentsline{toc}{chapter}{\headings{#2}}}
+    % permit an override value to be used in TOC
+    {\gdef\currbook{#2}\chapter*{#2}\addcontentsline{toc}{chapter}{\headings{#1}}}
+}
+
+% our custom macro for footnotes
+\newcommand{\lebnote}[1]{%
+  %\footnote{\label{bibleverse}#1}
+  \in@{:|NP|:}{#1}% ignore notes with a setting of "no print"
+  \ifin@{}\else{\footnote{#1}}%
+  \fi
+}
+
+
+
+
+
+
+\newsavebox{\fnmarkboxbox}
+\newcommand{\fnmarkbox}[1]{%
+  \colorbox{fnBgColor}{%
+    \sbox{\fnmarkboxbox}{#1}%
+    \setlength{\fboxsep}{0.8pt}% don't add space
+    \setlength{\fboxrule}{0.08pt}%
+    \color{fnBorderColor}%
+    \fbox{\usebox{\fnmarkboxbox}}%
+  }%
+}
+
+
+
+\providecommand\lnsuperscript[1]{%
+  \setlength{\fboxsep}{0pt}%
+  \setlength{\fboxrule}{0pt}%
+  \fontsize{6.5pt}{5pt}\selectfont%
+  \raisebox{3pt\relax}{\fnmarkbox{\textcolor{fnTextColor}{#1}}}%
+  \fontsize{10.45pt}{10.45pt}\selectfont%
+}
+
+
+
+% 20200217 - https://tex.stackexchange.com/questions/26693/change-the-color-of-footnote-marker-in-latex
+\renewcommand\@makefnmark{\lnsuperscript{\@thefnmark}}%
+
+\long\def\@makefntext#1{%\noindent\fontsize{7pt}{7pt}\selectfont\bfseries\fnm{[\@thefnmark] }\normalfont#1%
+  \setlength{\fboxsep}{0pt}\setlength{\fboxrule}{0pt}\noindent\fontsize{7pt}{-7pt}\selectfont\fnmarkbox{\textcolor{fnTextColor}{\@thefnmark}}\hspace{0.8pt}#1%
+}
+
+\newcount\biblechap@svdopt
+\newenvironment{biblechapter}[1][\thebiblechapter]
+  {\biblechap@svdopt=#1
+  \ifnum\c@biblechapter=\biblechap@svdopt\else
+    \advance\biblechap@svdopt by -1\fi
+  \setcounter{biblechapter}{\the\biblechap@svdopt}
+  \stepcounter{biblechapter}
+  \setbeforesecskip{0}\setbeforesubsecskip{0}
+  \lettrine[lines=2,lhang=0,findent=-1pt,nindent=0pt,loversize=0,lraise=0.09]{\hspace{-4.5pt}\lettrinefont\fontsize{24pt}{10pt}\selectfont\color{\chapnumcolor}\,\thebiblechapter\,}{}\ignorespaces}
+  {\par\vspace{\biblechapskip}\setbeforesecskip{0ex}\setbeforesubsecskip{0ex}}
+
+\newcommand{\@showversenum}{\ifnum\c@bibleverse=1\else{%
+  ~\color{VerseNumColor}{%
+    \bfseries%
+    \fontsize{10.4pt}{10.5pt}\selectfont%
+    \sbox0{$\thebibleverse$}% 
+    \raisebox{0pt\relax}{\thebibleverse}%
+    \normalfont%
+    \hspace{1.8pt}%
+  }%
+}\fi\ignorespaces}
+
+\newcommand{\VerseText}{\versetext\fontsize{10.4pt}{10.7pt}\selectfont\color{black}}
+\newcommand{\@verse}{\VerseText\stepcounter{bibleverse}\markright{{\scshape\currbook} \thebiblechapter:\thebibleverse}\hspace{0pt}}%
+\renewcommand{\verse}{\@verse\@showversenum\hspace{0pt}}
+
+\newcommand{\verseWithHeading}[1]{%
+  \@verse%
+  \ifnum\c@bibleverse=1{\sectionstyle\vh{#1}\newline}\else{\vspace{3.8pt}\newline\sectionstyle\vh{#1}\newline}\fi\@showversenum}
+\newcommand{\verseWithSubheading}[1]{%
+  \@verse%
+  \ifnum\c@bibleverse=1{\subsectionstyle\vh{#1}\newline}\else\vspace{3.8pt}\newline{\subsectionstyle\nohyphens{\vh{#1}}}\newline\fi\@showversenum}
+\newcommand{\innerVerseHeading}[1]{%
+  \vspace{3.8pt}\newline{\subsectionstyle\vh{#1}}\newline}
+
+\newcommand*{\JesusWords}[1]{%
+% b&w printing
+\spoken\fontsize{9.1pt}{10.7pt}\selectfont\color{JesusRed}\textit{#1}\VerseText%
+%color printing
+%\spoken\fontsize{9.1pt}{10.7pt}\selectfont\color{JesusRed}#1\VerseText%
+}
+
+\newcommand{\dictionaryentry}[3]{\setlength{\parindent}{0em}\setlength{\parskip}{0pt}\markboth{}{}\textbf{#1}\ {(#2)}:\ {#3}\smallbreak}
+
+\counterwithin*{footnote}{biblechapter}
+
+\makeatother
+
+
+%\newcommand{\startornaments}{\AddToShipoutPictureBG{%
+%  \checkoddpage%
+%  \ifoddpage%
+%   \AtPageUpperRight{\put(-100,-55){\pgfornament[width=1.75cm,symmetry=h,color=black]{195}}}%
+%   \AtPageLowerRight{\put(-100,55){\pgfornament[width=1.75cm,symmetry=v,color=black]{194}}}%
+% \else%
+%   \AtPageUpperLeft{\put(10,-55){\pgfornament[width=1.75cm,symmetry=h,color=black]{194}}}%
+%   \AtPageLowerLeft{\put(10,55){\pgfornament[width=1.75cm,symmetry=v,color=black]{195}}}
+% \fi}}
+
+\newcommand{\stopornaments}{\ClearShipoutPictureBG}
+
+\newcommand{\LORD}{\textsc{\headings{Lord}}\xspace}
+\newcommand{\LORDs}{\textsc{\headings{Lord's}}\xspace}
+
+
+
+%\setlength{\footnotesep}{24pt}%
+%\setlength{\skip\footins}{-24pt plus 3pt minus 3pt} % for example
+

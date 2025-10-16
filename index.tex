@@ -1,37 +1,21 @@
 \documentclass[twopage,twocolumn,10pt]{memoir}
 \usepackage{import}
-\usepackage{bigbook}
-\usepackage{makeidx}
+\usepackage{./.cmp/bigbook}
 
 
-\makeindex
-
-
-\title{Alcoholics Anonymous Basic Texts}
-\author{An Alcoholic}
-\date{\today}
 
 
 \begin{document}
 
-    \frontmatter
+    % index front matter
+    \input{indexf.tex}
 
 
-    \begin{titlingpage}
-
-        \maketitle
-
-    \end{titlingpage}
+    \include{ax-preface.tex}
 
 
-    \tableofcontents
-
-
-    \part*{Alcoholics Anonymous}
-
-    \mainmatter
-
-    \include{bb-a00-bb-title.tex}
+    \include{bb-a00-intro.tex}
+    \include{bb-a00-title.tex}
     \include{bb-a01-forewords.tex}
     \include{bb-a02-silkworth.tex}
 
@@ -51,14 +35,17 @@
     %\include{bb-b11-vision.tex}
 
     %% bb stories 1 ?%%
-    
     %% bb stories 1 ?%%
 
 
-    \part*{The Twelve Steps And Twelve Traditions Corpus}
+    \addcontentsline{toc}{part}{Books of 12n12}
+    \part*{Books of The Twelve Steps And Twelve Traditions}
 
-\include{tt-a01-forewords.tex}
-%\include{tt-b01-step1.tex}
+    \include{tt-a00-title.tex}
+    \include{tt-a01-forewords.tex}
+    %\include{tt-b01-step01.tex}
+    \include{tt-b01-step10.tex}
+
 
 \end{document}
 
