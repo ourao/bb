@@ -1,0 +1,6 @@
+.release/
+.compiled/
+.remote
+.build/
+.*.pdf
+.*.docx
