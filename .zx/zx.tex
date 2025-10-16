@@ -1,0 +1,81 @@
+\usepackage{microtype}
+
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+
+\usepackage{changepage} %adjustwidth
+
+% --- Robust macro machinery ---
+\usepackage{xparse}
+\usepackage{etoolbox}
+
+% --- Optional, but nice to have ---
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+
+%\lineation{section}
+%\firstlinenum{1}\linenumincrement{1}
+%\renewcommand{\linenumberfont}{\normalfont\ttfamily\small}
+
+
+% ---------- HIERARCHICAL NUMBERING CORE ----------
+% Book (string), chapter, paragraph, sentence
+\newcommand\bbbookname{Big Book}
+\newcommand{\bbbook}[1]{\renewcommand\bbbookname{#1}}
+
+\newcounter{bbchapter}
+\newcounter{bbpara}[bbchapter]
+\newcounter{bbsent}[bbpara]
+
+% Human-readable formats
+\newcommand{\BBref}{\bbbookname~\arabic{bbchapter}:\arabic{bbpara}}
+\newcommand{\BBfull}{\bbbookname~\arabic{bbchapter}:\arabic{bbpara}:\arabic{bbsent}}
+
+% Reserve enough gutter width for the longest plausible ID.
+% Adjust the sample text below to your expected max (e.g. Bill 23:88:88).
+\newlength{\bbwd}
+\settowidth{\bbwd}{\texttt{Bill 23:88:88}}
+\addtolength{\bbwd}{1em} % padding between ID and text
+
+% Macro that prints a left-aligned label into the reserved gutter
+\newcommand{\bbmark}[1]{%
+  \makebox[0pt][l]{\hspace*{-\bbwd}\texttt{#1}}%
+}
+
+% ---- MODES ----
+% 1) Paragraph mode: each paragraph gets Book C:P label
+% 2) Sentence mode: each sentence line gets Book C:P:S label
+\newif\ifbbSentenceMode
+\bbSentenceModefalse   % default = paragraph labels only
+
+% Hook at paragraph start: step paragraph, reset sentence, print label
+\newcommand{\bb@startpara}{%
+  \stepcounter{bbpara}\setcounter{bbsent}{0}%
+  \ifbbSentenceMode\relax\else \bbmark{\BBref}\fi
+}
+
+% Activate the hook at every paragraph start
+\everypar{\bb@startpara}
+
+% Sentence marker. You will (optionally) inject this at the start of each non-empty line.
+\NewDocumentCommand{\s}{}{%
+  \ifbbSentenceMode
+    \stepcounter{bbsent}%
+    \bbmark{\BBfull}%
+  \fi
+}
+
+% Chapter macro: sets the numeric chapter AND makes a visible heading (optional)
+\NewDocumentCommand{\Chapter}{m m}{%
+  \setcounter{bbchapter}{#1}%
+  \setcounter{bbpara}{0}%
+  \section*{#2}%
+  \addcontentsline{toc}{section}{#2}%
+}
+
+
+\begin{adjustwidth}{\bbwd}{0pt}
+\end{adjustwidth}

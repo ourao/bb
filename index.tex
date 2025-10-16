@@ -1,36 +1,64 @@
-%% BB CODIFIED %%
+\documentclass[twopage,twocolumn,10pt]{memoir}
+\usepackage{import}
+\usepackage{bigbook}
+\usepackage{makeidx}
 
-\documentclass[12pt,oneside]{article}
-\usepackage[a4paper,margin=28mm]{geometry}
-\usepackage{microtype}
 
-\usepackage{setspace}
-\onehalfspacing
+\makeindex
 
-\usepackage{parskip}
-\setlength{\parindent}{0pt}
+
+\title{Alcoholics Anonymous Basic Texts}
+\author{An Alcoholic}
+\date{\today}
+
 
 \begin{document}
 
-%\begin{adjustwidth}{\bbwd}{0pt}
+    \frontmatter
 
-\tableofcontents
-\newpage
 
-\include{b-01-forwards.tex}
-\include{b-02-silkworth.tex}
+    \begin{titlingpage}
 
-\include{c-01-bill.tex}
-\include{c-02-solution.tex}
-%\include{c-03-alcoholism.tex}
-%\include{c-04-agnostics.tex}
-%\include{c-05-how.tex}
-%\include{c-06-action.tex}
-%\include{c-07-working-with-others.tex}
-%\include{c-08-wives.tex}
-%\include{c-09-family.tex}
-%\include{c-10-employers.tex}
-%\include{c-11-vision.tex}
+        \maketitle
 
-%\end{adjustwidth}
+    \end{titlingpage}
+
+
+    \tableofcontents
+
+
+    \part*{Alcoholics Anonymous}
+
+    \mainmatter
+
+    \include{bb-a00-bb-title.tex}
+    \include{bb-a01-forewords.tex}
+    \include{bb-a02-silkworth.tex}
+
+    \include{bb-b01-bill.tex}
+    \include{bb-b02-solution.tex}
+    \include{bb-b03-alcoholism.tex}
+    \include{bb-b04-agnostics.tex}
+
+    %\include{bb-b05-how.tex}
+    %\include{bb-b06-action.tex}
+    %\include{bb-b07-working-with-others.tex}
+
+    %\include{bb-b08-wives.tex}
+    %\include{bb-b09-family.tex}
+    %\include{bb-b10-employers.tex}
+
+    %\include{bb-b11-vision.tex}
+
+    %% bb stories 1 ?%%
+    
+    %% bb stories 1 ?%%
+
+
+    \part*{The Twelve Steps And Twelve Traditions Corpus}
+
+\include{tt-a01-forewords.tex}
+%\include{tt-b01-step1.tex}
+
 \end{document}
+
