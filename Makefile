@@ -21,11 +21,12 @@ export TEXMFHOME :=/nonexistent
 SRC_DIRS := src
 
 SRC_TEX_X := $(shell find $(SRC_DIRS) -name '*.tex')
+SRC_TEX_Y := index.tex
+
 #TARGETS_TEX_Y := $(SRC_TEX_X:.tex=.pdf)
 #TARGETS_TEX_A := $(TARGETS_TEX_Y:%=$(OUTDIR)/%)
 
-SRC_TEX_B := index.tex
-SRC_TEX_A := $(SRC_TEX_X) index.tex indexf.tex
+SRC_TEX_A := $(SRC_TEX_X) $(SRC_TEX_Y)
 
 TARGETS = $(TARGETS_DIRS) $(TARGETS_A) $(TARGETS_B) $(TARGETS_TEX_A) $(TARGETS_TEX)
 

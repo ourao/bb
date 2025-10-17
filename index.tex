@@ -3,48 +3,51 @@
 \usepackage{./.cmp/bigbook}
 
 
-
-
 \begin{document}
 
-    % index front matter
-    \input{indexf.tex}
+    \input{ab-head.tex}
 
 
-    \include{ax-preface.tex}
+    \include{al-preface.tex}
+    \include{am-credits.tex}
+    \include{an-legal.tex}
 
 
-    \include{bb-a00-intro.tex}
-    \include{bb-a00-title.tex}
-    \include{bb-a01-forewords.tex}
-    \include{bb-a02-silkworth.tex}
+    \input{bb-head-a-front.tex}
+    \include{bb/bb-a00-titles.tex}
+    \include{bb/bb-a01-preface2.tex}
+    \include{bb/bb-a02-foreword1.tex}
+    \include{bb/bb-a02-foreword2.tex}
+    \include{bb/bb-b01-silkworth.tex}
 
-    \include{bb-b01-bill.tex}
-    \include{bb-b02-solution.tex}
-    \include{bb-b03-alcoholism.tex}
-    \include{bb-b04-agnostics.tex}
-
-    \include{bb-b05-how.tex}
-    \include{bb-b06-action.tex}
-    \include{bb-b07-others.tex}
-
-    \include{bb-b08-wives.tex}
-    \include{bb-b09-family.tex}
-    \include{bb-b10-employers.tex}
-
-    \include{bb-b11-vision.tex}
-
-    %% bb stories 1 ?%%
-    %% bb stories 1 ?%%
-
-
-    \addcontentsline{toc}{part}{Books of 12n12}
-    \part*{Books of The Twelve Steps And Twelve Traditions}
-
-    \include{tt-a00-title.tex}
-    \include{tt-a01-forewords.tex}
-    %\include{tt-b01-step01.tex}
-    \include{tt-b10-step10.tex}
+    
+    \input{bb-head-b-main.tex}
+    \include{bb/bb-c01-bill.tex}
+    \include{bb/bb-c02-solution.tex}
+    \include{bb/bb-c03-alcoholism.tex}
+    \include{bb/bb-c04-agnostics.tex}
+    \include{bb/bb-c05-how.tex}
+    \include{bb/bb-c06-action.tex}
+    \include{bb/bb-c07-others.tex}
+    \include{bb/bb-c08-wives.tex}
+    \include{bb/bb-c09-family.tex}
+    \include{bb/bb-c10-employers.tex}
+    \include{bb/bb-c11-vision.tex}
+    
+    \input{bb-head-c-pioneers.tex}
+    \include{bb/bb-d01-bob.tex}
+    \include{bb/bb-d02-three.tex}
+    \include{bb/bb-d03-shown.tex}
+    \include{bb/bb-d04-gentleman.tex}
+    \include{bb/bb-d05-women.tex}
+   
+    \input{bb-head-f-appendum.tex}
+    \include{bb/bb-l01-traditions.tex}
+    \include{bb/bb-l02-spirit.tex}
+    \include{bb/bb-l03-medical.tex}
+    \include{bb/bb-l04-lasker.tex}
+    \include{bb/bb-l05-religion.tex}
+    \include{bb/bb-l06-touch.tex}
 
 
 \end{document}
