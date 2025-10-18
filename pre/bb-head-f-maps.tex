@@ -1,0 +1,21 @@
+%\onecolumn
+%\clearpage
+
+\onecolumn
+\setcounter{tocdepth}[5]
+\renewcommand*\contentsname{Summary}
+%\tableofcontents
+\makeatletter  
+\singlespacing
+\begingroup % start a TeX group
+\color{colortoc}% or whatever color you wish to use
+\chapter*{\contentsname
+  \@mkboth{%
+    \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}
+% If you want to turn off columns being forced to equal height, use the starred version \begin{multicols*}{2}.
+\begin{multicols}{2}
+\@starttoc{toc}
+\end{multicols}
+\endgroup   % end of TeX group
+\makeatother
+

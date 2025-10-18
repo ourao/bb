@@ -13,9 +13,10 @@ LOG=$(BUILD_DIR)/make.log
 OUTDIR=.compiled
 
 TARGETS_DIRS := $(BUILD_DIR) $(OUTDIR) $(OUTDIR)/src-bb
-TARGETS_PDF=$(OUTDIR)/acorpus.pdf
+JOBNAME=acorpus
+TARGETS_PDF=$(OUTDIR)/$(JOBNAME).pdf
 
-TEX = latexmk -auxdir=$(BUILD_DIR) -xelatex -quiet -outdir=$(BUILD_DIR)
+TEX = latexmk -auxdir=$(BUILD_DIR) -xelatex -quiet -outdir=$(OUTDIR) -jobname=$(JOBNAME)
 export TEXMFHOME := /nonexistent
 export TEXINPUTS := src:src//:.cmp:.cmp//:pre:pre//:
 
@@ -33,13 +34,13 @@ TARGETS = $(TARGETS_DIRS) $(TARGETS_A) $(TARGETS_B) $(TARGETS_TEX_A) $(TARGETS_P
 
 all: $(TARGETS)
 
-$(BUILD_DIR)/index.pdf: $(SRC_TEX_A) | $(TARGET_DIRS)
+$(TARGETS_PDF): $(SRC_TEX_A) | $(TARGET_DIRS)
 	$(TEX) -f $(SRC_TEX_Y)
 	#$(TEX) -f $(SRC_TEX_Y)
-
-$(TARGETS_PDF): $(BUILD_DIR)/index.pdf | $(TARGET_DIRS)
-	cp $(BUILD_DIR)/index.pdf $@
 	cp src/bb/* $(OUTDIR)/src-bb
+
+#$(TARGETS_PDF): $(BUILD_DIR)/index.pdf | $(TARGET_DIRS)
+#	cp $(BUILD_DIR)/index.pdf $@
 
 $(OUTDIR)/README: README.md | $(TARGET_DIRS)
 	cp "README.md" "$(OUTDIR)/README"
@@ -56,10 +57,13 @@ rebuild:
 	@$(MAKE)
 
 open:
-	zathura .compiled/index.pdf &
+	zathura $(TARGETS_PDF) &
 
-$(TARBALL): ${TARGETS}
-	mkdir -p ${TARBALL_DIR}
+log:
+	nvim $(BUILD_DIR)/$(JOBNAME).log
+
+$(TARBALL): $(TARGETS)
+	mkdir -p $(TARBALL_DIR)
 	tar -czvf $(TARBALL) --transform 's,^\.compile,doc,' -C . $(OUTDIR)
 
 mirror: all
