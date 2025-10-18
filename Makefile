@@ -1,6 +1,6 @@
 # compilation
 
-VERSION = 0.0.2
+VERSION = 0.0.5
 RCLONE_REMOTE=bigbook
 REPO=aorao/bundoran-aa-group
 
@@ -15,8 +15,9 @@ OUTDIR=.compiled
 TARGETS_DIRS := $(BUILD_DIR) $(OUTDIR)
 TARGETS_TEX=$(OUTDIR)/index.pdf
 
-TEX = TEXINPUTS=src:src//: latexmk -auxdir=$(BUILD_DIR) -outdir=$(OUTDIR) -xelatex -quiet
-export TEXMFHOME :=/nonexistent
+TEX = latexmk -auxdir=$(BUILD_DIR) -outdir=$(OUTDIR) -xelatex -quiet
+export TEXMFHOME := /nonexistent
+export TEXINPUTS := src:src//:.cmp:.cmp//:pre:pre//:
 
 SRC_DIRS := src
 
