@@ -2,7 +2,7 @@
 
 VERSION = 0.0.5
 RCLONE_REMOTE=bigbook
-REPO=aorao/bundoran-aa-group
+REPO=aorao/bigbook
 
 RELEASE = Document Release v$(VERSION)
 TARBALL_DIR = .release
@@ -12,10 +12,10 @@ BUILD_DIR=.build
 LOG=$(BUILD_DIR)/make.log
 OUTDIR=.compiled
 
-TARGETS_DIRS := $(BUILD_DIR) $(OUTDIR)
-TARGETS_TEX=$(OUTDIR)/index.pdf
+TARGETS_DIRS := $(BUILD_DIR) $(OUTDIR) $(OUTDIR)/src-bb
+TARGETS_PDF=$(OUTDIR)/acorpus.pdf
 
-TEX = latexmk -auxdir=$(BUILD_DIR) -outdir=$(OUTDIR) -xelatex -quiet
+TEX = latexmk -auxdir=$(BUILD_DIR) -xelatex -quiet -outdir=$(BUILD_DIR)
 export TEXMFHOME := /nonexistent
 export TEXINPUTS := src:src//:.cmp:.cmp//:pre:pre//:
 
@@ -29,18 +29,20 @@ SRC_TEX_Y := index.tex
 
 SRC_TEX_A := $(SRC_TEX_X) $(SRC_TEX_Y)
 
-TARGETS = $(TARGETS_DIRS) $(TARGETS_A) $(TARGETS_B) $(TARGETS_TEX_A) $(TARGETS_TEX)
+TARGETS = $(TARGETS_DIRS) $(TARGETS_A) $(TARGETS_B) $(TARGETS_TEX_A) $(TARGETS_PDF) $(OUTDIR)/README
 
 all: $(TARGETS)
 
-$(TARGETS_TEX): $(OUTDIR)/%.pdf: $(SRC_TEX_A) | $(TARGET_DIRS)
-	$(TEX) -f $(SRC_TEX_B)
-	$(TEX) -f $(SRC_TEX_B)
-	#cp ${BUILD_DIR}/index.pdf $@
+$(BUILD_DIR)/index.pdf: $(SRC_TEX_A) | $(TARGET_DIRS)
+	$(TEX) -f $(SRC_TEX_Y)
+	#$(TEX) -f $(SRC_TEX_Y)
 
-$(OUTDIR)/README.md: README.md | $(TARGET_DIRS)
+$(TARGETS_PDF): $(BUILD_DIR)/index.pdf | $(TARGET_DIRS)
+	cp $(BUILD_DIR)/index.pdf $@
+	cp src/bb/* $(OUTDIR)/src-bb
 
-	cp "README.md" "$(OUTDIR)/README.md"
+$(OUTDIR)/README: README.md | $(TARGET_DIRS)
+	cp "README.md" "$(OUTDIR)/README"
 
 $(TARGETS_DIRS):
 	mkdir -p $@
