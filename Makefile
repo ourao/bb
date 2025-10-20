@@ -1,7 +1,7 @@
 # compilation
 
 VERSION = 0.0.5
-RCLONE_REMOTE=bigbook
+RCLONE_REMOTE=g1-bigb
 REPO=aorao/bigbook
 
 RELEASE = Document Release v$(VERSION)
@@ -71,7 +71,7 @@ mirror: all
 	rclone sync \
 		-P --track-renames \
 		$(CURDIR)/$(OUTDIR) \
-		$(REMOTE):doc
+		$(RCLONE_REMOTE):doc
 	
 	rclone sync \
 		-P --track-renames \
@@ -79,8 +79,9 @@ mirror: all
 		--exclude ".build/**" \
 		--exclude ".git/**" \
 		--exclude ".release/**" \
+		#--exclude ".cmp/**" \
 		$(CURDIR)/ \
-		$(REMOTE):src
+		$(RCLONE_REMOTE):src
 
 release-gh: $(TARBALL)
 	gh release create "v$(VERSION)" $(TARBALL) \
