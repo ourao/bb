@@ -1,28 +1,29 @@
-\documentclass[twopage,twocolumn,10pt]{memoir}
+%\documentclass[twopage,twocolumn,10pt,openany]{memoir}
+\documentclass[twocolumn,10pt,openany]{memoir}
 \usepackage{import}
 \usepackage{./.cmp/bigbook}
-
+\input{ab-preamble.tex}
 
 \begin{document}
 
-    \input{ba-head.tex}
+    %\quarkmarks %?
+    \bbFront
+    %\include{al-epigraph.tex}
+    \include{am-legal.tex}
+    \include{an-foreword.tex}
+    
+    \bbTocPage
+    \include{ao-preface.tex}
+    \bbStartMain
 
-
-    \include{al-preface.tex}
-    \include{an-legal.tex}
-
-
-    \input{bb-head-a-front.tex}
+    \bbPart{Books of History}
     \include{bb-a00-logos.tex}
-    %\include{bb-a00-title2.tex}
-    %%\include{bb-a00-title3.tex}
     \include{bb-a01-preface2.tex}
     \include{bb-a02-foreword1.tex}
     \include{bb-a02-foreword2.tex}
     \include{bb-b01-silkworth.tex}
 
-    
-    \include{bb-head-b-main.tex}
+    \bbPart{Books of Bill}
     \include{bb-c01-bill.tex}
     \include{bb-c02-solution.tex}
     \include{bb-c03-alcoholism.tex}
@@ -34,9 +35,8 @@
     \include{bb-c09-family.tex}
     \include{bb-c10-employers.tex}
     \include{bb-c11-vision.tex}
-   
 
-    \include{bb-head-c-pioneers.tex}
+    \bbPart{Books of The Pioneers}
     \include{bb-d00-a-pioneers.tex}
     \include{bb-d00-bob.tex}
     \include{bb-d01-three.tex}
@@ -47,9 +47,8 @@
     \include{bb-d07-fear.tex}
     \include{bb-d08-short.tex}
     \include{bb-d09-kingdom.tex}
-
     
-    \include{bb-head-d-intime.tex}
+    \bbPart{Books Intime}
     %\include{bb-e02-fearfear.tex}
     \include{bb-e03-housewife.tex}
     \include{bb-e04-physician.tex}
@@ -57,34 +56,33 @@
     \include{bb-e13-me.tex}
     %\include{bb-e16-acceptance.tex}
 
-
-    \include{bb-head-e-nearly.tex}
+    \bbPart{Books Nearly}
     %\include{bb-f12-chance.tex}
     \include{bb-f14-bondage.tex}
     %\include{bb-f15-handle.tex}
 
-
-    \include{bb-head-f-extinct.tex}
-    \include{bb-k00-brewmeister.tex}
-    \include{bb-k00-european.tex}
-    \include{bb-k00-farm.tex}
-    \include{bb-k00-gentleman.tex}
-    \include{bb-k00-hawk.tex}
-    \include{bb-k00-shown.tex}
-
-
+    \bbPart{Books Intime}
+    \include{bb-k00-extinct.tex}
+    \include{bb-k01-brewmeister.tex}
+    \include{bb-k01-european.tex}
+    \include{bb-k01-farm.tex}
+    \include{bb-k01-gentleman.tex}
+    \include{bb-k01-hawk.tex}
+    \include{bb-k01-shown.tex}
+    
+    \bbPart{Appendum}
     \include{bb-head-l-appendum.tex}
     \include{bb-l01-traditions.tex}
     \include{bb-l02-spirit.tex}
     \include{bb-l03-medical.tex}
     \include{bb-l04-lasker.tex}
     \include{bb-l05-religion.tex}
-    \include{bb-l06-touch.tex}
+    \include{bb-l06-find.tex}
     \include{bb-l07-concepts.tex}
 
-    %\include{bb-head-m-appendum.tex}
+    %\bbPart{Maps}
+    %\include{bb-head-m-maps.tex}
     %\include{bb-m00-map.tex}
 
-
+    %\include{bb-head-n-appendices.tex}
 \end{document}
-
