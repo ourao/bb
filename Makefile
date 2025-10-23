@@ -1,63 +1,77 @@
-VERSION = 0.0.5
-RCLONE_REMOTE=g1-bigb
-REPO=aorao/bigbook
+VERSION 			:= 0.1.0
+RCLONE_REMOTE		:= g1-bigb
+REPO				:= aorao/bigbook
 
-RELEASE = Document Release v$(VERSION)
-TARBALL_DIR = .release
-TARBALL = $(TARBALL_DIR)/compiled_v$(VERSION).tar.gz
+RELEASE 			:= Document Release v$(VERSION)
+TARBALL_DIR 		:= .release
+TARBALL 			:= $(TARBALL_DIR)/compiled_v$(VERSION).tar.gz
 
-BUILD_DIR=.build
-LOG=/tmp/bbx-make.log
-OUTDIR=.compiled
+BUILD_DIR			:= .build
+OUTDIR				:= .compiled
+LOG					:= /tmp/bbx-make.log
 
-TARGETS_DIRS := $(BUILD_DIR) $(OUTDIR) $(OUTDIR)/src-bb
-JOBNAME=acorpus
-TARGETS_PDF=$(OUTDIR)/$(JOBNAME).pdf
+#QUIET				:= -quiet
+JOBNAME				:= acorpus
 
-TEX = latexmk -auxdir=$(BUILD_DIR) -xelatex -outdir=$(OUTDIR) -jobname=$(JOBNAME) -quiet 
-export TEXMFHOME := /nonexistent
-export TEXINPUTS := src:src//:.cmp:.cmp//:pre:pre//:
+export TEXMFHOME 	:= /nonexistent
+export TEXINPUTS 	:= src:src//:.cmp:.cmp//:pre:pre//:
 
-SRC_DIRS := src
-SRC_DIR_CMP := .cmp
+SRC_DIR 			:= src
+SRC_CMP 			:= .cmp
+SRC_TEX_X 			:= index.tex
 
-SRC_TEX_X := $(shell find $(SRC_DIRS) -name '*.tex')
-SRC_TEX_Y := index.tex
-SRC_TEX_Z := $(shell find $(SRC_DIR_CMP) -name '*.sty')
-
-#TARGETS_TEX_Y := $(SRC_TEX_X:.tex=.pdf)
-#TARGETS_TEX_A := $(TARGETS_TEX_Y:%=$(OUTDIR)/%)
+SRC_TEX_Y := $(shell find $(SRC_DIR) -name '*.tex')
+SRC_TEX_Z := $(shell find $(SRC_CMP) -name '*.sty')
 
 SRC_TEX_A := $(SRC_TEX_X) $(SRC_TEX_Y) $(SRC_TEX_Z)
 
-TARGETS = $(TARGETS_DIRS) $(TARGETS_A) $(TARGETS_B) $(TARGETS_TEX_A) $(TARGETS_PDF) $(OUTDIR)/README
+SRC_TEX_BB := $(shell find src/bb -name '*.tex')
+TAR_TEX_BB := \
+	$(foreach src,\
+	$(SRC_TEX_BB),\
+	$(OUTDIR)/src-bb/$(shell basename $(shell dirname $(src)))/$(shell basename $(src)))
 
-all: $(TARGETS)
+TAR_DIR 	:= $(BUILD_DIR) $(OUTDIR) $(OUTDIR)/src-bb
 
-$(TARGETS_PDF): $(SRC_TEX_A) | $(TARGET_DIRS)
-	$(TEX) -f $(SRC_TEX_Y)
-	#$(TEX) -f $(SRC_TEX_Y)
-	cp src/bb-a-history/* src/bb-b-bill/* src/bb-c-stories/* $(OUTDIR)/src-bb
+TAR_PDF		:= $(OUTDIR)/$(JOBNAME).pdf
 
-#$(TARGETS_PDF): $(BUILD_DIR)/index.pdf | $(TARGET_DIRS)
-#	cp $(BUILD_DIR)/index.pdf $@
+TAR_READ    := $(OUTDIR)/README
 
-$(OUTDIR)/README: README.md | $(TARGET_DIRS)
-	cp "README.md" "$(OUTDIR)/README"
+TAR 		:= $(TAR_DIR) $(TAR_PDF) $(TAR_TEX_BB)
 
-$(TARGETS_DIRS):
+TEX = latexmk \
+		-xelatex \
+	  	-auxdir=$(BUILD_DIR) \
+		-outdir=$(OUTDIR) \
+		-jobname=$(JOBNAME) \
+		$(QUIET) 
+
+all: $(TAR)
+
+$(TAR_PDF): $(SRC_TEX_A) | $(TAR_DIR)
+	$(TEX) -f $(SRC_TEX_X) 2> $(LOG)
+
+$(TAR_TEX_BB): $(OUTDIR)/src-bb/%.tex: src/bb/%.tex | $(TAR_DIR)
+	rsync -avP --mkpath $< $@
+
+$(TAR_DIR):
 	mkdir -p $@
 
 .PHONY: clean
-clean:
-	trash-put ".build/"
+clean-aux:
+	# CAUTION USING RM IN SUCH AN ENV
+	rm .build/*
 
-clean-pdf:
-	trash-put $(TARGETS_PDF)
+clean:
+	rm .compiled/*
 
 rebuild:
 	@$(MAKE) clean
+	@$(MAKE) clean-aux
 	@$(MAKE)
+
+test:
+	$(info TAR=$(TAR))
 
 open:
 	zathura $(TARGETS_PDF) &
@@ -69,8 +83,7 @@ $(TARBALL): $(TARGETS)
 	mkdir -p $(TARBALL_DIR)
 	tar -czvf $(TARBALL) --transform 's,^\.compile,doc,' -C . $(OUTDIR)
 
-mirror: all
-	# release compiled and src into separate hierarchies on the remote
+release-mirror: all
 	rclone sync \
 		-P --track-renames \
 		$(CURDIR)/$(OUTDIR) \
@@ -82,7 +95,7 @@ mirror: all
 		--exclude ".build/**" \
 		--exclude ".git/**" \
 		--exclude ".release/**" \
-		#--exclude ".cmp/**" \
+		--exclude ".cmp/**" \
 		$(CURDIR)/ \
 		$(RCLONE_REMOTE):src
 
@@ -92,6 +105,5 @@ release-gh: $(TARBALL)
         --title "$(RELEASE)" \
         --notes "Release notes for $(RELEASE)"
 
-release-archive: $(TARBALL)
+release-local-arc: $(TARBALL)
 	cp $(TARBALL) $(ARCHIVE_DIR)/
-

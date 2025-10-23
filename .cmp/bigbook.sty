@@ -323,19 +323,19 @@
 \renewcommand\chaptername{Book}
 
 \newcommand{\customsection}%
-        [2][]%
-        {%
-            \ifthenelse{\isempty{#1}}%
-                % use the section title name for the TOC contents line
-                {%
-                    \section*{#2}
-                    \addcontentsline{toc}{part}{\headings{#2}}
-                }%
-                % permit an override value to be used in TOC
-                {%
-                    \section*{#2}
-                    \addcontentsline{toc}{part}{\headings{#1}}
-                }
+    [2][]%
+    {%
+        \ifthenelse{\isempty{#1}}%
+            % use the section title name for the TOC contents line
+            {%
+                \section*{#2}
+                \addcontentsline{toc}{part}{\headings{#2}}
+            }%
+            % permit an override value to be used in TOC
+            {%
+                \section*{#2}
+                \addcontentsline{toc}{part}{\headings{#1}}
+            }
 }
 
 \newcommand{\biblebook}[2][]{%
@@ -387,13 +387,19 @@
         \fontsize{10.45pt}{10.45pt}\selectfont%
 }
 
-% 20200217 - https://tex.stackexchange.com/questions/26693/change-the-color-of-footnote-marker-in-latex
+% 20200217 - https://tex.stackexchange.com/questions/26693/%
+    %change-the-color-of-footnote-marker-in-latex
 \renewcommand\@makefnmark{%
         \lnsuperscript{\@thefnmark}
 }
 
 \long\def\@makefntext#1{%
-    %\noindent\fontsize{7pt}{7pt}\selectfont\bfseries\fnm{[\@thefnmark] }\normalfont#1%
+    %\noindent
+        %\fontsize{7pt}{7pt}
+        %\selectfont
+        %\bfseries
+        %\fnm{[\@thefnmark] }%
+        %\normalfont#1%
     \setlength{\fboxsep}{0pt}
     \setlength{\fboxrule}{0pt}
     \noindent
@@ -410,13 +416,18 @@
         [\thebiblechapter]%
         {%
             \biblechap@svdopt=#1
+            
             \ifnum\c@biblechapter=\biblechap@svdopt
+            
             \else
+                
                 \advance\biblechap@svdopt by -1\fi
                 \setcounter{biblechapter}{\the\biblechap@svdopt}
                 \stepcounter{biblechapter}
+                
                 \setbeforesecskip{0pt}
                 \setbeforesubsecskip{0pt}
+                
                 \lettrine[
                     lines=2,
                     lhang=0,
@@ -438,10 +449,10 @@
         }%
         {%
             \par
-            \vspace{3.0pt}
-            {\biblechapskip}
-            \setbeforesecskip{0pt}
-            \setbeforesubsecskip{0pt}
+            %\vspace{3.0pt}
+            %{\biblechapskip}
+            %\setbeforesecskip{0pt}
+            %\setbeforesubsecskip{0pt}
         }
 
 \newcommand{\@showversenum}{%
@@ -507,6 +518,22 @@
         \@showversenum
 }
 
+\newcommand*{\bbHeading}[1]{%
+    {%
+        \sectionstyle
+        \vh{#1}
+        \newline
+    }%
+}
+
+\newcommand*{\bbHeadingRaw}[1]{%
+    {%
+        \sectionstyle
+        #1
+        \newline
+    }%
+}
+
 \newcommand{\verseWithSubheading}[1]{%
         \@verse%
         \ifnum\c@bibleverse=1
@@ -546,7 +573,12 @@
     \textit{#1}
     \VerseText%
     %color printing
-    %\spoken\fontsize{9.1pt}{10.7pt}\selectfont\color{JesusRed}#1\VerseText%
+    %\spoken
+        %\fontsize{9.1pt}{10.7pt}
+        %\selectfont%
+        %\color{JesusRed}
+    %#1
+    %\VerseText%
 }
 
 \newcommand{\dictionaryentry}[3]{%
@@ -558,15 +590,24 @@
 
 \counterwithin*{footnote}{biblechapter}
 
-%\newcommand{\startornaments}{\AddToShipoutPictureBG{%
-%  \checkoddpage%
-%  \ifoddpage%
-%   \AtPageUpperRight{\put(-100,-55){\pgfornament[width=1.75cm,symmetry=h,color=black]{195}}}%
-%   \AtPageLowerRight{\put(-100,55){\pgfornament[width=1.75cm,symmetry=v,color=black]{194}}}%
-% \else%
-%   \AtPageUpperLeft{\put(10,-55){\pgfornament[width=1.75cm,symmetry=h,color=black]{194}}}%
-%   \AtPageLowerLeft{\put(10,55){\pgfornament[width=1.75cm,symmetry=v,color=black]{195}}}
-% \fi}}
+%\newcommand{\startornaments}{%
+%   \AddToShipoutPictureBG{%
+%       \checkoddpage%
+%       \ifoddpage%
+%           \AtPageUpperRight{\put(-100,-55)%
+%               {\pgfornament[width=1.75cm,symmetry=h,color=black]%
+%               {195}}}%
+%           \AtPageLowerRight{\put(-100,55)%
+%           {\pgfornament[width=1.75cm,symmetry=v,color=black]%
+%           {194}}}%
+%       \else%
+%           \AtPageUpperLeft{\put(10,-55)%
+%           {\pgfornament[width=1.75cm,symmetry=h,color=black]%
+%           {194}}}%
+%           \AtPageLowerLeft{\put(10,55)%
+%           {\pgfornament[width=1.75cm,symmetry=v,color=black]%
+%           {195}}}
+%       \fi}}
 
 \newcommand{\stopornaments}%
         {\ClearShipoutPictureBG}
@@ -624,10 +665,10 @@
 }
 
 \newcommand*{\bbTocPage}{%
-        % https://tex.stackexchange.com/questions/389319/making-the-second-column-of-the-table-of-contents-clear-the-page-header
+        % https://tex.stackexchange.com/questions/389319/%
+            %making-the-second-column-of-the-table-of-contents-clear-the-page-header
         \bbTocsetup
         \begingroup % start a TeX group
-
             %\color{colortoc}% ?
             \bbTocTitle
             % use starred \begin{multicols*}{2} for non-equalised col heights
@@ -646,14 +687,16 @@
 }
 
 \newcommand*{\bbPart}[1]{%
+        \addcontentsline{toc}{part}{#1}
+        \phantomsection
+
         \clearpage
         \onecolumn
-        
+
         \begin{centering}
         \part*{#1}
         \end{centering}
 
-        \addcontentsline{toc}{part}{#1}
         \clearpage
         \twocolumn
 }
@@ -670,3 +713,6 @@
 
 \makeatother
 
+\newcommand{\romNum}[1]{%
+    \MakeUppercase{\romannumeral #1}
+}
