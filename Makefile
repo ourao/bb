@@ -1,4 +1,4 @@
-VERSION 			:= 0.1.0
+VERSION 			:= 0.1.3
 RCLONE_REMOTE		:= g1-bigb
 REPO				:= aorao/bigbook
 
@@ -49,7 +49,8 @@ TEX = latexmk \
 all: $(TAR)
 
 $(TAR_PDF): $(SRC_TEX_A) | $(TAR_DIR)
-	$(TEX) -f $(SRC_TEX_X) 2> $(LOG)
+	$(TEX) -f $(SRC_TEX_X)
+	#2> $(LOG)
 
 $(TAR_TEX_BB): $(OUTDIR)/src-bb/%.tex: src/bb/%.tex | $(TAR_DIR)
 	rsync -avP --mkpath $< $@
@@ -60,13 +61,21 @@ $(TAR_DIR):
 .PHONY: clean
 clean-aux:
 	# CAUTION USING RM IN SUCH AN ENV
+	# USING HARDCODED NAMES AS FAILSAFE
 	rm .build/*
 
-clean:
-	rm .compiled/*
+clean-pdf:
+	# CAUTION USING RM IN SUCH AN ENV
+	# USING HARDCODED NAMES AS FAILSAFE
+	rm -R .compiled/acorpus.pdf
+
+clean-all:
+	# CAUTION USING RM IN SUCH AN ENV
+	# USING HARDCODED NAMES AS FAILSAFE
+	rm -R .compiled/*
 
 rebuild:
-	@$(MAKE) clean
+	@$(MAKE) clean-pdf
 	@$(MAKE) clean-aux
 	@$(MAKE)
 

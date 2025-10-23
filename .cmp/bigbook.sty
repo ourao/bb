@@ -35,101 +35,113 @@
 \RequirePackage{contour}
 \RequirePackage{etex}
 \RequirePackage{hyphenat}
+%\RequirePackage{titling}
 
 \makeindex
 
 % old-style numbers don't look great as drop-caps
 \newfontfamily{\lettrinefont}{Bodoni12_ITC}[
-  % Files
-  Path            = .cmp/fnt/numbers/ ,
-  % Fonts
-  UprightFont     = *-Regular.ttf ,
-  UprightFeatures = { SmallCapsFont = *-Regular.ttf } ,
-  BoldFont        = *-Regular.ttf ,
-  BoldFeatures    = { SmallCapsFont = *-Regular.ttf } ,
-  ItalicFont      = *-Regular.ttf ,
-  BoldItalicFont  = *-Regular.ttf,
-  % Features
-  Numbers         = OldStyle,
-  WordSpace       = 0.6
+    % Files
+    Path            = .cmp/fnt/numbers/ ,
+    % Fonts
+    UprightFont     = *-Regular.ttf ,
+    UprightFeatures = { SmallCapsFont = *-Regular.ttf } ,
+    BoldFont        = *-Regular.ttf ,
+    BoldFeatures    = { SmallCapsFont = *-Regular.ttf } ,
+    ItalicFont      = *-Regular.ttf ,
+    BoldItalicFont  = *-Regular.ttf,
+    % Features
+    Numbers         = OldStyle,
+    WordSpace       = 0.6
 ]
 
 \newfontfamily{\frankrhuel}{FrankRuehlCLM}[
-  % Files
-  Path            = .cmp/fnt/frankrhuel/ ,
-  % Fonts
-  UprightFont     = FrankRuehlCLM-Medium.ttf ,
-  UprightFeatures = { SmallCapsFont = FrankRuehlCLM-Medium.ttf, } ,
-  BoldFont        = FrankRuehlCLM-Bold.ttf,
-  BoldFeatures    = { SmallCapsFont = FrankRuehlCLM-Bold.ttf } ,
-  ItalicFont      = FrankRuehlCLM-MediumOblique.ttf ,
-  BoldItalicFont  = FrankRuehlCLM-BoldOblique.ttf ,
-  % Features
-  Numbers         = OldStyle,
-  WordSpace       = 0.65
+    % Files
+    Path            = .cmp/fnt/frankrhuel/ ,
+    % Fonts
+    UprightFont     = FrankRuehlCLM-Medium.ttf ,
+    UprightFeatures = { SmallCapsFont = FrankRuehlCLM-Medium.ttf, } ,
+    BoldFont        = FrankRuehlCLM-Bold.ttf,
+    BoldFeatures    = { SmallCapsFont = FrankRuehlCLM-Bold.ttf } ,
+    ItalicFont      = FrankRuehlCLM-MediumOblique.ttf ,
+    BoldItalicFont  = FrankRuehlCLM-BoldOblique.ttf ,
+    % Features
+    Numbers         = OldStyle,
+    WordSpace       = 0.65
 ]
 
 \newfontfamily{\spoken}{Sans}[
-  % Files
-  Path            = .cmp/fnt/sans/ ,
-  % Fonts
-  UprightFont     = *-Regular.ttf ,
-  UprightFeatures = { SmallCapsFont = *-Regular.ttf } ,
-  BoldFont        = *-Bold.ttf ,
-  BoldFeatures    = { SmallCapsFont = *-Bold.ttf } ,
-  ItalicFont      = *-Italic.ttf ,
-  BoldItalicFont  = *-Italic.ttf ,
-  % Features
-  Numbers         = OldStyle,
-  WordSpace       = 0.65,
-  LetterSpace     = -2
+    % Files
+    Path            = .cmp/fnt/sans/ ,
+    % Fonts
+    UprightFont     = *-Regular.ttf ,
+    UprightFeatures = { SmallCapsFont = *-Regular.ttf } ,
+    BoldFont        = *-Bold.ttf ,
+    BoldFeatures    = { SmallCapsFont = *-Bold.ttf } ,
+    ItalicFont      = *-Italic.ttf ,
+    BoldItalicFont  = *-Italic.ttf ,
+    % Features
+    Numbers         = OldStyle,
+    WordSpace       = 0.65,
+    LetterSpace     = -2
 ]
 
 \newfontfamily{\versetext}{FrankRuehlCLM}[
-  % Files
-  Path            = .cmp/fnt/frankrhuel/ ,
-  % Fonts
-  UprightFont     = *-Medium.ttf ,
-  UprightFeatures = { SmallCapsFont = *-Medium.ttf, } ,
-  BoldFont        = FrankRuehlCLM-Bold.ttf,
-  BoldFeatures    = { SmallCapsFont = *-Bold.ttf } ,
-  ItalicFont      = *-MediumOblique.ttf ,
-  BoldItalicFont  = *-BoldOblique.ttf ,
-  % Features
-  Numbers         = OldStyle,
-  WordSpace       = 0.6,
-  LetterSpace     = -2
+    % Files
+    Path            = .cmp/fnt/frankrhuel/ ,
+    % Fonts
+    UprightFont     = *-Medium.ttf ,
+    UprightFeatures = { SmallCapsFont = *-Medium.ttf, } ,
+    BoldFont        = FrankRuehlCLM-Bold.ttf,
+    BoldFeatures    = { SmallCapsFont = *-Bold.ttf } ,
+    ItalicFont      = *-MediumOblique.ttf ,
+    BoldItalicFont  = *-BoldOblique.ttf ,
+    % Features
+    Numbers         = OldStyle,
+    WordSpace       = 0.6,
+    LetterSpace     = -2
 ]
 
 % old-style numbers don't look great as drop-caps
 \newfontfamily{\headings}{AlegreyaSC}[
-  % Files
-  Path            = .cmp/fnt/alegreya-sc/ ,
-  % Fonts
-  UprightFont     = *-Regular.ttf ,
-  UprightFeatures = { SmallCapsFont = *-Regular.ttf } ,
-  BoldFont        = *-Bold.ttf ,
-  BoldFeatures    = { SmallCapsFont = *-Bold.ttf } ,
-  ItalicFont      = *-Italic.ttf ,
-  BoldItalicFont  = *-BoldItalic.ttf
+    % Files
+    Path            = .cmp/fnt/alegreya-sc/ ,
+    % Fonts
+    UprightFont     = *-Regular.ttf ,
+    UprightFeatures = { SmallCapsFont = *-Regular.ttf } ,
+    BoldFont        = *-Bold.ttf ,
+    BoldFeatures    = { SmallCapsFont = *-Bold.ttf } ,
+    ItalicFont      = *-Italic.ttf ,
+    BoldItalicFont  = *-BoldItalic.ttf
 ]
 
 \setmainfont[
-  % Files
-  Path            = .cmp/fnt/frankrhuel/ ,
-  % Fonts
-  UprightFont     = FrankRuehlCLM-Medium.ttf ,
-  UprightFeatures = { SmallCapsFont = FrankRuehlCLM-Medium.ttf, } ,
-  BoldFont        = FrankRuehlCLM-Bold.ttf,
-  BoldFeatures    = { SmallCapsFont = FrankRuehlCLM-Bold.ttf } ,
-  ItalicFont      = FrankRuehlCLM-MediumOblique.ttf ,
-  BoldItalicFont  = FrankRuehlCLM-BoldOblique.ttf ,
-  % Features
-  Numbers         = OldStyle,
-  WordSpace       = 0.65
+    % Files
+    Path            = .cmp/fnt/frankrhuel/ ,
+    % Fonts
+    UprightFont     = FrankRuehlCLM-Medium.ttf ,
+    UprightFeatures = { SmallCapsFont = FrankRuehlCLM-Medium.ttf, } ,
+    BoldFont        = FrankRuehlCLM-Bold.ttf,
+    BoldFeatures    = { SmallCapsFont = FrankRuehlCLM-Bold.ttf } ,
+    ItalicFont      = FrankRuehlCLM-MediumOblique.ttf ,
+    BoldItalicFont  = FrankRuehlCLM-BoldOblique.ttf ,
+    % Features
+    Numbers         = OldStyle,
+    WordSpace       = 0.65
 ]{FrankRhuel}
 
 \setlength{\parskip}{\baselineskip}%
+
+\pretitle{%
+    \vspace*{1in}%
+    \begin{center}\Huge\bfseries}
+\posttitle{%
+    \par%
+    \vspace{2em}%
+    \includegraphics[scale=0.6]{\logo}
+    \vspace{2em}%
+    \end{center}
+}
 
 % book names font family and huge
 \titleformat%
@@ -162,6 +174,22 @@
 
 \titlespacing*{\subsection}{0pt}{0pt}{0pt}
 
+\titlecontents%
+    {part}%
+    [3mm]%
+    {\normalsize\bfseries}%
+    {PART\space\thecontentslabel:\space\MakeUppercase}%
+    {}%
+    {\normalfont\dotfill\makebox[12mm][l]{\thecontentspage}}%
+
+\titlecontents%
+    {chapter}%
+    [3mm]%
+    {\vspace{-12pt}\normalsize}%
+    {}%
+    {}%
+    {\dotfill\makebox[12mm][l]{\thecontentspage}}%
+
 \pagestyle{fancy}
 
 \fancyhf{}
@@ -171,26 +199,25 @@
 
 % footnote font style
 \renewcommand{\footnotelayout}{%
-        \vfill\frankrhuel
+    \vfill\frankrhuel
 }
 
 \renewcommand{\footnoterule}{%
-        \vfill\kern -3pt \hrule width 0.4\columnwidth \kern 2.6pt
+    \vfill\kern -3pt \hrule width 0.4\columnwidth \kern 2.6pt
 }
 
 \renewcommand*{\multfootsep}{%
-        \textsuperscript{\normalfont,}
+    \textsuperscript{\normalfont,}
 }
 
 % footnotes listed inline rather than on new lines
 \footglue=.25em plus.15em minus.15em
 
 \renewcommand{\headrule}{%
-        \hbox to\headwidth{%
-            \color{white}\leaders\hrule height 0pt \hfill
-        }
+    \hbox to\headwidth{%
+        \color{white}\leaders\hrule height 0pt \hfill
+    }
 }
-
 
 \hypersetup{%
     colorlinks=true, 
@@ -409,51 +436,99 @@
     \hspace{0.8pt}#1%
 }
 
+\newenvironment{fmatterchapter}{%
+    \clearpage
+    \onecolumn
+    \begingroup
+        \fontsize{12pt}{11pt}
+            \selectfont
+}{%
+    \endgroup
+    \clearpage
+    \twocolumn
+    \justifying
+    \thispagestyle{empty}
+    \mbox{}
+    \null
+}%
+
+\newenvironment{legalchapter}{%
+    \begin{fmatterchapter}
+        \begingroup
+            \spoken
+            \fontsize{8.5pt}{9pt}
+                \selectfont
+            \begin{center}
+                \vspace*{5em}
+}{%
+            \end{center}
+        \endgroup
+    \end{fmatterchapter}
+}
+
+\newenvironment{legalcreditsitemized}{%
+    \begin{multicols}{3}
+        %\headings
+        \vspace{-\topsep}
+        \begin{itemize}[
+            rightmargin=0.125in, 
+            leftmargin=0.125in
+        ]
+            \fontsize{9.5pt}{20pt}
+                \selectfont
+            \setlength{\parskip}{0pt}
+            \setlength{\itemsep}{0pt plus 1pt}
+            \setlength{\columnsep}{0.1em}
+}{%
+        \end{itemize}
+    \vspace{-\topsep}
+    \end{multicols}
+}%
+
 \newcount\biblechap@svdopt
 
 \newenvironment{biblechapter}%
-        [1]%
-        [\thebiblechapter]%
+    [1]%
+    [\thebiblechapter]%
+{%
+    \biblechap@svdopt=#1
+    
+    \ifnum\c@biblechapter=\biblechap@svdopt
+    
+    \else
+        
+        \advance\biblechap@svdopt by -1\fi
+        \setcounter{biblechapter}{\the\biblechap@svdopt}
+        \stepcounter{biblechapter}
+        
+        \setbeforesecskip{0pt}
+        \setbeforesubsecskip{0pt}
+        
+        \lettrine[
+            lines=2,
+            lhang=0,
+            findent=-1pt,
+            nindent=0pt,
+            loversize=0,
+            lraise=0.09
+        ]%
         {%
-            \biblechap@svdopt=#1
-            
-            \ifnum\c@biblechapter=\biblechap@svdopt
-            
-            \else
-                
-                \advance\biblechap@svdopt by -1\fi
-                \setcounter{biblechapter}{\the\biblechap@svdopt}
-                \stepcounter{biblechapter}
-                
-                \setbeforesecskip{0pt}
-                \setbeforesubsecskip{0pt}
-                
-                \lettrine[
-                    lines=2,
-                    lhang=0,
-                    findent=-1pt,
-                    nindent=0pt,
-                    loversize=0,
-                    lraise=0.09
-                ]%
-                {%
-                    \hspace{-4.5pt}
-                    \lettrinefont
-                    \fontsize{24pt}{10pt}%
-                    \selectfont
-                    \color{\chapnumcolor}
-                    \,\thebiblechapter\,
-                }%
-                {}
-                \ignorespaces
+            \hspace{-4.5pt}
+            \lettrinefont
+            \fontsize{24pt}{10pt}%
+            \selectfont
+            \color{\chapnumcolor}
+            \,\thebiblechapter\,
         }%
-        {%
-            \par
-            %\vspace{3.0pt}
-            %{\biblechapskip}
-            %\setbeforesecskip{0pt}
-            %\setbeforesubsecskip{0pt}
-        }
+        {}
+        \ignorespaces
+}{%
+    \par
+    %\vspace{3.0pt}
+    %{\biblechapskip}
+    %\setbeforesecskip{0pt}
+    %\setbeforesubsecskip{0pt}
+}
 
 \newcommand{\@showversenum}{%
         \ifnum\c@bibleverse=1
@@ -621,7 +696,7 @@
 %\setlength{\footnotesep}{24pt}%
 %\setlength{\skip\footins}{-24pt plus 3pt minus 3pt} % for example
 
-\newcommand{\bbFront}{%
+\newcommand{\bbStartFront}{%
         \frontmatter
 
         \setlrmarginsandblock{0.5125in}{0.375in}{*}
@@ -634,44 +709,26 @@
         %\end{titlingpage}
 }
 
-\newcommand*{\bbTocsetup}{%
-        % toc font styles
-        \titlecontents%
-            {part}%
-            [3mm]%
-            {\normalsize\bfseries}%
-            {PART\space\thecontentslabel:\space\MakeUppercase}%
-            {}%
-            {\normalfont\dotfill\makebox[12mm][l]{\thecontentspage}}%
-        \titlecontents%
-            {chapter}%
-            [3mm]%
-            {\vspace{-12pt}\normalsize}%
-            {}%
-            {}%
-            {\dotfill\makebox[12mm][l]{\thecontentspage}}%
-        %\onecolumn
-        %\singlespacing
-}
-
 % note: memoir/article/book etc can handle @mkboth in different ways
 % safeguarding against other classes may need to be implemented
 \newcommand*{\bbTocTitle}{%
-        \chapter*{\contentsname
+        \chapter*{\bbcontentsname
             \markboth{%
-                \MakeUppercase\contentsname}%
-                {\MakeUppercase\contentsname}%
+                \MakeUppercase\bbcontentsname}%
+                {\MakeUppercase\bbcontentsname}%
         }
 }
 
 \newcommand*{\bbTocPage}{%
         % https://tex.stackexchange.com/questions/389319/%
             %making-the-second-column-of-the-table-of-contents-clear-the-page-header
-        \bbTocsetup
-        \begingroup % start a TeX group
-            %\color{colortoc}% ?
+        \onecolumn
+        %\singlespacing
+        \begingroup
             \bbTocTitle
-            % use starred \begin{multicols*}{2} for non-equalised col heights
+            %\color{colortoc}% ?
+            % use starred \begin{multicols*}{2} 
+                % for non-equalised col heights
             \begin{multicols}{2}
                 \csname @starttoc\endcsname{toc}%
                 %\@starttoc{toc}%
@@ -681,7 +738,7 @@
 
 \newcommand{\bbStartMain}{%
         \mainmatter
-        % the book name, chapter and verse number at the top of the page
+        % book name, chapter, verse no at page top
         \fancyhead[RO,LE]{\textbf{\headings{\Large \rightmark}}}
         \fancyhfoffset[RO]{1pt}
 }
@@ -700,16 +757,6 @@
         \clearpage
         \twocolumn
 }
-        % a blank page on the back of the page - next page on a new right-sided page
-        %\clearpage
-        %\newpage
-        %\thispagestyle{empty}
-        %\mbox{}
-        %\endpage
-        %\newpage
-
-        %\mainmatter
-%}
 
 \makeatother
 
