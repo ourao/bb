@@ -133,7 +133,7 @@
 \setlength{\parskip}{\baselineskip}%
 
 \pretitle{%
-    \vspace*{1in}%
+    \vspace*{0.5in}%
     \begin{center}\Huge\bfseries}
 \posttitle{%
     \par%
@@ -437,19 +437,19 @@
 }
 
 \newenvironment{fmatterchapter}{%
+    \begingroup
     \clearpage
     \onecolumn
-    \begingroup
         \fontsize{12pt}{11pt}
             \selectfont
 }{%
     \endgroup
-    \clearpage
-    \twocolumn
-    \justifying
-    \thispagestyle{empty}
-    \mbox{}
-    \null
+    %\clearpage
+    %\twocolumn
+    %\justifying
+    %\thispagestyle{empty}
+    %\mbox{}
+    %\null
 }%
 
 \newenvironment{legalchapter}{%
@@ -531,66 +531,66 @@
 }
 
 \newcommand{\@showversenum}{%
-        \ifnum\c@bibleverse=1
-        \else
-            {%
-                ~\color{VerseNumColor}{%
-                    \bfseries%
-                    \fontsize{10.4pt}{10.5pt}\selectfont%
-                    \sbox0{$\thebibleverse$}% 
-                    \raisebox{0pt\relax}{\thebibleverse}%
-                    \normalfont%
-                    \hspace{1.8pt}%
-                }%
+    \ifnum\c@bibleverse=1
+    \else
+        {%
+            ~\color{VerseNumColor}{%
+                \bfseries%
+                \fontsize{10.4pt}{10.5pt}\selectfont%
+                \sbox0{$\thebibleverse$}% 
+                \raisebox{0pt\relax}{\thebibleverse}%
+                \normalfont%
+                \hspace{1.8pt}%
             }%
-        \fi
-        \ignorespaces
+        }%
+    \fi
+    \ignorespaces
 }
 
 \newcommand{\VerseText}{%
-        \versetext
-        \fontsize{10.4pt}{10.7pt}
-        \selectfont
-        \color{black}
+    \versetext
+    \fontsize{10.4pt}{10.7pt}
+    \selectfont
+    \color{black}
 }
 
 \newcommand{\@verse}{%
-        \VerseText
-        \stepcounter{bibleverse}\markright
-        {%
-            {\scshape\currbook} 
-            \thebiblechapter:\thebibleverse
-        }%
-        \hspace{0pt}
+    \VerseText
+    \stepcounter{bibleverse}\markright
+    {%
+        {\scshape\currbook} 
+        \thebiblechapter:\thebibleverse
+    }%
+    \hspace{0pt}
 }
 
 \renewcommand{\verse}{%
-        \@verse
-        \@showversenum
-        \hspace{0pt}
+    \@verse
+    \@showversenum
+    \hspace{0pt}
 }
 
 \newcommand*{\verseWithHeading}[1]{%
-        \@verse
-        \ifnum\c@bibleverse=1
-            {%
-                %\vspace{3.8pt}
-                %\newline
-                \sectionstyle
-                \vh{#1}
-                \newline
-            }%
-        \else
-            {%
-                %\vspace{3.8pt}
-                %\newline
-                \sectionstyle
-                %\mbox{\vh{#1}}
-                \vh{#1}
-                \newline
-            }%
-        \fi
-        \@showversenum
+    \@verse
+    \ifnum\c@bibleverse=1
+        {%
+            %\vspace{3.8pt}
+            %\newline
+            \sectionstyle
+            \vh{#1}
+            \newline
+        }%
+    \else
+        {%
+            %\vspace{3.8pt}
+            %\newline
+            \sectionstyle
+            %\mbox{\vh{#1}}
+            \vh{#1}
+            \newline
+        }%
+    \fi
+    \@showversenum
 }
 
 \newcommand*{\bbHeading}[1]{%
@@ -610,33 +610,33 @@
 }
 
 \newcommand{\verseWithSubheading}[1]{%
-        \@verse%
-        \ifnum\c@bibleverse=1
-            {%
-                \subsectionstyle
-                \vh{#1}
-                \newline
-            }%
-        \else
-            %\vspace{3.8pt}
-            %\newline
-            {%
-                \subsectionstyle
-                \nohyphens{\vh{#1}}
-            }
-            \newline
-        \fi
-        \@showversenum
-}
-
-\newcommand{\innerVerseHeading}[1]{%
-        \vspace{3.8pt}
-        \newline
+    \@verse%
+    \ifnum\c@bibleverse=1
         {%
             \subsectionstyle
             \vh{#1}
+            \newline
+        }%
+    \else
+        %\vspace{3.8pt}
+        %\newline
+        {%
+            \subsectionstyle
+            \nohyphens{\vh{#1}}
         }
         \newline
+    \fi
+    \@showversenum
+}
+
+\newcommand{\innerVerseHeading}[1]{%
+    \vspace{3.8pt}
+    \newline
+    {%
+        \subsectionstyle
+        \vh{#1}
+    }
+    \newline
 }
 
 \newcommand*{\JesusWords}[1]{%
@@ -657,11 +657,11 @@
 }
 
 \newcommand{\dictionaryentry}[3]{%
-        \setlength{\parindent}{0em}
-        \setlength{\parskip}{0pt}
-        \markboth{}{}
-        \textbf{#1}\ {(#2)}:\ {#3}\smallbreak
-    }
+    \setlength{\parindent}{0em}
+    \setlength{\parskip}{0pt}
+    \markboth{}{}
+    \textbf{#1}\ {(#2)}:\ {#3}\smallbreak
+}
 
 \counterwithin*{footnote}{biblechapter}
 
@@ -720,30 +720,37 @@
 }
 
 \newcommand*{\bbTocPage}{%
-        % https://tex.stackexchange.com/questions/389319/%
-            %making-the-second-column-of-the-table-of-contents-clear-the-page-header
+    % https://tex.stackexchange.com/questions/389319/%
+        %making-the-second-column-of-the-table-of-contents-clear-the-page-header
+    \begingroup
         \onecolumn
         %\singlespacing
-        \begingroup
-            \bbTocTitle
-            %\color{colortoc}% ?
-            % use starred \begin{multicols*}{2} 
-                % for non-equalised col heights
-            \begin{multicols}{2}
-                \csname @starttoc\endcsname{toc}%
-                %\@starttoc{toc}%
-            \end{multicols}
-        \endgroup
+        \bbTocTitle
+        %\color{colortoc}% ?
+        % use starred \begin{multicols*}{2} 
+            % for non-equalised col heights
+        \begin{multicols}{2}
+            \csname @starttoc\endcsname{toc}%
+            %\@starttoc{toc}%
+        \end{multicols}
+    \endgroup
+    \clearpage
 }
 
 \newcommand{\bbStartMain}{%
-        \mainmatter
-        % book name, chapter, verse no at page top
-        \fancyhead[RO,LE]{\textbf{\headings{\Large \rightmark}}}
-        \fancyhfoffset[RO]{1pt}
+    % overrides page break
+    \@mainmattertrue
+    \pagenumbering{arabic}
+    %\clearpage
+    %\mainmatter
+    % book name, chapter, verse no at page top
+    \fancyhead[RO,LE]{\textbf{\headings{\Large \rightmark}}}
+    \fancyhfoffset[RO]{1pt}
 }
 
 \newcommand*{\bbPart}[1]{%
+    \begingroup
+    
         \addcontentsline{toc}{part}{#1}
         \phantomsection
 
@@ -756,10 +763,11 @@
 
         \clearpage
         \twocolumn
+    \endgroup
 }
-
-\makeatother
 
 \newcommand{\romNum}[1]{%
     \MakeUppercase{\romannumeral #1}
 }
+
+\makeatother
