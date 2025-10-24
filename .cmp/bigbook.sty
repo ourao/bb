@@ -1,6 +1,5 @@
 \RequirePackage{libertine}
 \RequirePackage{makeidx}
-
 \RequirePackage{lipsum}
 \RequirePackage{fixltx2e}
 \RequirePackage{xspace}
@@ -35,7 +34,7 @@
 \RequirePackage{contour}
 \RequirePackage{etex}
 \RequirePackage{hyphenat}
-%\RequirePackage{titling}
+%\RequirePackage{titling} % auto emulated by memoir
 
 \makeindex
 
@@ -133,7 +132,7 @@
 \setlength{\parskip}{\baselineskip}%
 
 \pretitle{%
-    \vspace*{0.5in}%
+    \vspace*{1ex}%
     \begin{center}\Huge\bfseries}
 \posttitle{%
     \par%
@@ -142,7 +141,6 @@
     \vspace{2em}%
     \end{center}
 }
-
 
 % book names font family and huge
 \titleformat%

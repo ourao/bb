@@ -11,7 +11,7 @@ OUTDIR				:= .compiled
 LOG					:= /tmp/bbx-make.log
 
 #QUIET				:= -quiet
-JOBNAME				:= acorpus
+JOBNAME				:= basictext
 
 export TEXMFHOME 	:= /nonexistent
 export TEXINPUTS 	:= src:src//:.cmp:.cmp//:pre:pre//:
@@ -66,7 +66,7 @@ clean-aux:
 clean-pdf:
 	# CAUTION USING RM IN SUCH AN ENV
 	# USING HARDCODED NAMES AS FAILSAFE
-	rm -R .compiled/acorpus.pdf
+	rm -R .compiled/basictext.pdf
 
 clean-all:
 	# CAUTION USING RM IN SUCH AN ENV
@@ -82,14 +82,16 @@ test:
 	$(info TAR=$(TAR))
 
 open:
-	zathura $(TARGETS_PDF) &
+	zathura $(TAR_PDF) &
 
 log:
 	nvim $(LOG)
 
-$(TARBALL): $(TARGETS)
+$(TARBALL): $(TAR)
 	mkdir -p $(TARBALL_DIR)
-	tar -czvf $(TARBALL) --transform 's,^\.compile,doc,' -C . $(OUTDIR)
+	tar -czvf $(TARBALL) \
+		--transform 's,^\.compile,doc,' \
+		-C . $(OUTDIR)
 
 release-mirror: all
 	rclone sync \
@@ -108,7 +110,9 @@ release-mirror: all
 		$(RCLONE_REMOTE):src
 
 release-gh: $(TARBALL)
-	gh release create "v$(VERSION)" $(TARBALL) \
+	gh release create \
+		"v$(VERSION)" \
+		$(TARBALL) \
         -R $(REPO) \
         --title "$(RELEASE)" \
         --notes "Release notes for $(RELEASE)"
