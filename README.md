@@ -13,15 +13,16 @@ A verse may approximately correspond to an atomic unit of reference in the broad
 
 Paragraph 1 of chapter 1, Bill's Story, becomes something like the following:
 
-Bill 1
-
-#### Beginnings **1**
-
 **1** WAR FEVER ran high in the New England town to which we new, young officers from Plattsburg were assigned, and we were flattered when the first citizens took us to their homes, making us feel heroic. **2** Here was love, applause, war; moments sublime with intervals hilarious. **3** I was part of life at last, and in the midst of the excitement I discovered liquor. **4** I forgot the strong warnings and the prejudices of my people concerning drink. **5** In time we sailed for "Over There." **6** I was very lonely and again turned to alcohol.
+-- Bill 1:1-5
 
 
 ## Example 2
 
-Paragraph 3 of chapter 1, Bill's Story, becomes something like the following:
+Sentence 1, Paragraph 3, chapter 4 We Agnostics, becomes something like the following:
 
+"If a mere code of morals 
+    or a better philosophy of life were sufficient to overcome alcoholism, 
+    many of us would have recovered long ago."
+-- Agnostics 1:14
 
