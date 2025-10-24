@@ -43,8 +43,7 @@ TEX = latexmk \
 		-xelatex \
 	  	-auxdir=$(BUILD_DIR) \
 		-outdir=$(OUTDIR) \
-		-jobname=$(JOBNAME) \
-		$(QUIET) 
+		-jobname=$(JOBNAME) $(QUIET)
 
 all: $(TAR)
 

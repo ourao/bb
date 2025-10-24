@@ -143,6 +143,7 @@
     \end{center}
 }
 
+
 % book names font family and huge
 \titleformat%
     {\chapter}%
@@ -393,40 +394,37 @@
 
 \newsavebox{\fnmarkboxbox}
 
-\newcommand{\fnmarkbox}%
-        [1]%
-        {%
-            \colorbox{fnBgColor}{%
-                \sbox{\fnmarkboxbox}{#1}%
-                \setlength{\fboxsep}{0.8pt}% don't add space
-                \setlength{\fboxrule}{0.08pt}%
-                \color{fnBorderColor}%
-                \fbox{\usebox{\fnmarkboxbox}}%
-            }%
+\newcommand{\fnmarkbox}[1]{%
+    \colorbox{fnBgColor}{%
+        \sbox{\fnmarkboxbox}{#1}%
+        \setlength{\fboxsep}{0.8pt}% don't add space
+        \setlength{\fboxrule}{0.08pt}%
+        \color{fnBorderColor}%
+        \fbox{\usebox{\fnmarkboxbox}}%
+    }%
 }
 
-\providecommand\lnsuperscript[1]%
-    {%
-        \setlength{\fboxsep}{0pt}%
-        \setlength{\fboxrule}{0pt}%
-        \fontsize{6.5pt}{5pt}\selectfont%
-        \raisebox{3pt\relax}{\fnmarkbox{\textcolor{fnTextColor}{#1}}}%
-        \fontsize{10.45pt}{10.45pt}\selectfont%
+\providecommand\lnsuperscript[1]{%
+    \setlength{\fboxsep}{0pt}%
+    \setlength{\fboxrule}{0pt}%
+    \fontsize{6.5pt}{5pt}\selectfont%
+    \raisebox{3pt\relax}{\fnmarkbox{\textcolor{fnTextColor}{#1}}}%
+    \fontsize{10.45pt}{10.45pt}\selectfont%
 }
 
 % 20200217 - https://tex.stackexchange.com/questions/26693/%
     %change-the-color-of-footnote-marker-in-latex
 \renewcommand\@makefnmark{%
-        \lnsuperscript{\@thefnmark}
+    \lnsuperscript{\@thefnmark}
 }
 
 \long\def\@makefntext#1{%
     %\noindent
-        %\fontsize{7pt}{7pt}
-        %\selectfont
-        %\bfseries
-        %\fnm{[\@thefnmark] }%
-        %\normalfont#1%
+    %\fontsize{7pt}{7pt}
+    %\selectfont
+    %\bfseries
+    %\fnm{[\@thefnmark] }%
+    %\normalfont#1%
     \setlength{\fboxsep}{0pt}
     \setlength{\fboxrule}{0pt}
     \noindent
@@ -459,8 +457,10 @@
             \fontsize{8.5pt}{9pt}
                 \selectfont
             \begin{center}
-                \vspace*{5em}
+                \vspace*{8em}
+                \vfill
 }{%
+            %\vspace*{2em}
             \end{center}
         \endgroup
     \end{fmatterchapter}
