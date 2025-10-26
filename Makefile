@@ -7,7 +7,9 @@ TARBALL_DIR 		:= .release
 TARBALL 			:= $(TARBALL_DIR)/compiled_v$(VERSION).tar.gz
 
 BUILD_DIR			:= .build
-OUTDIR				:= .compiled
+OUTDIR              := .compiled
+OUTDIR_TXT			:= $(OUTDIR)/src-txt
+OUTDIR_PDF			:= $(OUTDIR)/basictext
 LOG					:= /tmp/bbx-make.log
 
 #QUIET				:= -quiet
@@ -29,11 +31,11 @@ SRC_TEX_BB := $(shell find src/bb -name '*.tex')
 TAR_TEX_BB := \
 	$(foreach src,\
 	$(SRC_TEX_BB),\
-	$(OUTDIR)/src-bb/$(shell basename $(shell dirname $(src)))/$(shell basename $(src)))
+	$(OUTDIR_TXT)/$(shell basename $(shell dirname $(src)))/$(shell basename $(src)))
 
-TAR_DIR 	:= $(BUILD_DIR) $(OUTDIR) $(OUTDIR)/src-bb
+TAR_DIR 	:= $(BUILD_DIR) $(OUTDIR_PDF) $(OUTDIR_TXT) $(TARBALL_DIR)
 
-TAR_PDF		:= $(OUTDIR)/$(JOBNAME).pdf
+TAR_PDF		:= $(OUTDIR_PDF)/$(JOBNAME).pdf
 
 TAR_READ    := $(OUTDIR)/README
 
@@ -42,7 +44,7 @@ TAR 		:= $(TAR_DIR) $(TAR_PDF) $(TAR_TEX_BB)
 TEX = latexmk \
 		-xelatex \
 	  	-auxdir=$(BUILD_DIR) \
-		-outdir=$(OUTDIR) \
+		-outdir=$(OUTDIR_PDF) \
 		-jobname=$(JOBNAME) $(QUIET)
 
 all: $(TAR)
@@ -51,8 +53,11 @@ $(TAR_PDF): $(SRC_TEX_A) | $(TAR_DIR)
 	$(TEX) -f $(SRC_TEX_X)
 	#2> $(LOG)
 
-$(TAR_TEX_BB): $(OUTDIR)/src-bb/%.tex: src/bb/%.tex | $(TAR_DIR)
-	rsync -avP --mkpath $< $@
+$(TAR_TEX_BB): $(OUTDIR_TXT)/%.tex: src/bb/%.tex | $(TAR_DIR)
+	rsync -avP \
+		--mkpath \
+		--delete \
+		$< $@
 
 $(TAR_DIR):
 	mkdir -p $@
@@ -66,7 +71,7 @@ clean-aux:
 clean-pdf:
 	# CAUTION USING RM IN SUCH AN ENV
 	# USING HARDCODED NAMES AS FAILSAFE
-	rm -R .compiled/basictext.pdf
+	rm -R .compiled/basictext/basictext.pdf
 
 clean-all:
 	# CAUTION USING RM IN SUCH AN ENV
@@ -87,24 +92,26 @@ open:
 log:
 	nvim $(LOG)
 
-$(TARBALL): $(TAR)
-	mkdir -p $(TARBALL_DIR)
-	tar -czvf $(TARBALL) \
+$(TARBALL): all
+	tar \
+		-czvf $(TARBALL) \
 		--transform 's,^\.compile,doc,' \
 		-C . $(OUTDIR)
 
 release-mirror: all
 	rclone sync \
-		-P --track-renames \
+		-P \
+		--track-renames \
 		$(CURDIR)/$(OUTDIR) \
 		$(RCLONE_REMOTE):doc
 	
 	rclone sync \
-		-P --track-renames \
-		--exclude ".compiled/**" \
-		--exclude ".build/**" \
+		-P \
+		--track-renames \
 		--exclude ".git/**" \
-		--exclude ".release/**" \
+		--exclude "$(OUTDIR)/**" \
+		--exclude "$(BUILD_DIR)/**" \
+		--exclude "$(TARBALL_DIR)/**" \
 		--exclude ".cmp/**" \
 		$(CURDIR)/ \
 		$(RCLONE_REMOTE):src

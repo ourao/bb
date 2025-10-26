@@ -231,6 +231,7 @@
 \setlength{\headwidth}{\textwidth}
 \setlength{\columnseprule}{0pt}
 
+
 % space below the page header
 \setheaderspaces{*}{0mm}{*}
 \clubpenalty10000
@@ -239,8 +240,7 @@
 %\newlength{\versespacing}
 %\setlength{\versespacing}{0pt}
 %\newcommand{\versespace}{\hspace{\versespacing}}
-
-\frenchspacing
+%\frenchspacing
 
 \AtBeginDocument{%
     \begingroup\tiny%
@@ -287,10 +287,10 @@
     {0.1em plus.1em minus.09em}
 
 \newcommand{\sectionstyle}{%
-        \bfseries
-        \raggedright
-        %\fontsize{10pt}{9.75pt}
-        \selectfont\headings
+     \bfseries
+     \raggedright
+     %\fontsize{10pt}{9.75pt}
+     \selectfont\headings
 }
 
 \setsecheadstyle{\sectionstyle}
@@ -299,9 +299,9 @@
 \setaftersecskip{0pt}
 
 \newcommand{\subsectionstyle}{%
-        \bfseries\itshape\raggedright
-        \fontsize{10pt}{9.75pt}
-        \selectfont\headings
+     \bfseries\itshape\raggedright
+     \fontsize{10pt}{9.75pt}
+     \selectfont\headings
 }
 
 \setsubsecheadstyle{\subsectionstyle}
@@ -349,19 +349,19 @@
 \renewcommand\chaptername{Book}
 
 \newcommand{\customsection}%
-    [2][]%
-    {%
-        \ifthenelse{\isempty{#1}}%
-            % use the section title name for the TOC contents line
-            {%
-                \section*{#2}
-                \addcontentsline{toc}{part}{\headings{#2}}
-            }%
-            % permit an override value to be used in TOC
-            {%
-                \section*{#2}
-                \addcontentsline{toc}{part}{\headings{#1}}
-            }
+    [2]%
+    []{%
+    \ifthenelse{\isempty{#1}}%
+        % use the section title name for the TOC contents line
+        {%
+            \section*{#2}
+            \addcontentsline{toc}{part}{\headings{#2}}
+        }%
+        % permit an override value to be used in TOC
+        {%
+            \section*{#2}
+            \addcontentsline{toc}{part}{\headings{#1}}
+        }
 }
 
 \newcommand{\biblebook}[2][]{%
@@ -529,43 +529,44 @@
 }
 
 \newcommand{\@showversenum}{%
-    \ifnum\c@bibleverse=1
-    \else
-        {%
-            ~\color{VerseNumColor}{%
-                \bfseries%
-                \fontsize{10.4pt}{10.5pt}\selectfont%
-                \sbox0{$\thebibleverse$}% 
-                \raisebox{0pt\relax}{\thebibleverse}%
-                \normalfont%
-                \hspace{1.8pt}%
-            }%
+    \ifnum\c@bibleverse=1%
+    \else{%
+        ~\color{VerseNumColor}{%
+            \bfseries%
+            \fontsize{9.0pt}{8.5pt}%
+                \selectfont%
+            \sbox0{$\thebibleverse$}% 
+            \raisebox{0pt\relax}{\thebibleverse}%
+            \normalfont%
+            \hspace{1.8pt}%
         }%
-    \fi
-    \ignorespaces
+    }%
+    \fi%
+    \ignorespaces%
 }
 
 \newcommand{\VerseText}{%
-    \versetext
-    \fontsize{10.4pt}{10.7pt}
-    \selectfont
-    \color{black}
+    \versetext%
+    \fontsize{10.4pt}{10.7pt}%
+        \selectfont%
+    \color{black}%
 }
 
 \newcommand{\@verse}{%
-    \VerseText
-    \stepcounter{bibleverse}\markright
+    \VerseText%
+    \stepcounter{bibleverse}%
+    \markright%
     {%
-        {\scshape\currbook} 
-        \thebiblechapter:\thebibleverse
+        {\scshape\currbook}%
+        \thebiblechapter:\thebibleverse%
     }%
-    \hspace{0pt}
+    \hspace*{0pt}%
 }
 
 \renewcommand{\verse}{%
-    \@verse
-    \@showversenum
-    \hspace{0pt}
+    \@verse%
+    \@showversenum%
+    \hspace*{0pt}%
 }
 
 \newcommand*{\verseWithHeading}[1]{%
@@ -744,21 +745,21 @@
     % book name, chapter, verse no at page top
     \fancyhead[RO,LE]{\textbf{\headings{\Large \rightmark}}}
     \fancyhfoffset[RO]{1pt}
+    \VerseText
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{2pt}
+    \frenchspacing
 }
 
 \newcommand*{\bbPart}[1]{%
     \begingroup
-    
         \addcontentsline{toc}{part}{#1}
         \phantomsection
-
         \clearpage
         \onecolumn
-
         \begin{centering}
-        \part*{#1}
+            \part*{#1}
         \end{centering}
-
         \clearpage
         \twocolumn
     \endgroup
