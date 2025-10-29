@@ -73,7 +73,7 @@ clean-pdf:
 	# USING HARDCODED NAMES AS FAILSAFE
 	rm -R .compiled/basictext/basictext.pdf
 
-clean-all:
+clean-all: clean-aux
 	# CAUTION USING RM IN SUCH AN ENV
 	# USING HARDCODED NAMES AS FAILSAFE
 	rm -R .compiled/*
